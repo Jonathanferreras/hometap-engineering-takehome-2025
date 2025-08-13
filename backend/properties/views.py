@@ -14,36 +14,6 @@ def property_view(request):
     provider_config = PropertyProviderConfig()
     service = PropertyService(provider_config)
     data = service.query_providers(address)
-
-
-    # data = {
-    #    "providers": {
-    #         "Provider 1": {
-    #             "Normalized Address":address,
-    #             "Square Footage": 2165,
-    #             "Lot Size (Acres)": 0.43,
-    #             "Year Built": 1975,
-    #             "Property Type": "Townhouse",
-    #             "Bedrooms": 2,
-    #             "Bathrooms": 2,
-    #             "Room Count": 5,
-    #             "Septic System": "Yes",
-    #             "Sale Price": 350000,
-    #         },
-    #         "Provider 2": {
-    #             "Normalized Address":address,
-    #             "Square Footage": 2165,
-    #             "Lot Size (Acres)": 0.43,
-    #             "Year Built": 1975,
-    #             "Property Type": "Townhouse",
-    #             "Bedrooms": 2,
-    #             "Bathrooms": 2,
-    #             "Room Count": 5,
-    #             "Septic System": "Yes",
-    #             "Sale Price": 350000
-    #         }
-    #     }
-    # }
     
     return JsonResponse(data)
 

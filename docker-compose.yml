@@ -1,0 +1,36 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - /app/backend/__pycache__
+      - /app/backend/backend/__pycache__
+      - /app/properties/__pycache__
+      - /app/properties/migrations/__pycache__
+      - /app/properties/services/__pycache__
+      - /app/properties/services/api/__pycache__
+      - /app/properties/services/property/__pycache__
+    environment:
+      - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=backend.settings
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  default:
+    name: hometap-network
