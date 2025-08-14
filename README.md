@@ -215,33 +215,36 @@ $ curl -X GET "https://property-detail-api.fly.dev/provider-2/property?address=1
 In order to run the project make sure you have [docker](https://www.docker.com/) installed on you machine.
 
 Create an env file in the `/backend` folder and add the following:
-`
-PROVIDER_1_BASE_URL="url here"
-PROVIDER_1_API_KEY="api key here"
 
-PROVIDER_2_BASE_URL="url here"
-PROVIDER_2_API_KEY="api key here"
-`
+> PROVIDER_1_BASE_URL="url here"
+
+> PROVIDER_1_API_KEY="api key here"
+
+> PROVIDER_2_BASE_URL="url here"
+
+> PROVIDER_2_API_KEY="api key here"
 
 Create an env file in the `/frontend` folder and add the following:
-`VITE_BACKEND_API_URL="path to your front app"`
+
+> VITE_BACKEND_API_URL="path to your front app"
 
 Once that's done run the following commands to run the project:
-Dev mode (Hot reloading): `docker-compose -f docker-compose.dev.yml up --build`
-Production mode: `docker-compose up --build`
+
+- Dev mode (Hot reloading): `docker-compose -f docker-compose.dev.yml up --build`
+- Production mode: `docker-compose up --build`
 
 ## Thoughts
 
 Improvements that can be made to this system are the following:
 
-Caching responses: We can reduce response time and backend load by caching responses to previously made requests (ex. Redis).
+**Caching responses:** We can reduce response time and backend load by caching responses to previously made requests (ex. Redis).
 
-Storing provider data: We can store data returned from providers to enable further processing and analysis. For example, track changes to properties over time (sale price, square footage, lot size, etc.) and surface a history view for each property.
+**Storing provider data:** We can store data returned from providers to enable further processing and analysis. For example, track changes to properties over time (sale price, square footage, lot size, etc.) and surface a history view for each property.
 
-Favorites: Building on the previous point, we can let users favorite a property and view how its key attributes change over time.
+**Favorites:** Building on the previous point, we can let users favorite a property and view how its key attributes change over time.
 
-Stagger provider requests and indexing: As we add providers, we can stagger requests or lazy load data for better performance. When serving from our database instead of live provider calls, we can add indexing to speed up lookups for a given property.
+**Stagger provider requests and indexing:** As we add providers, we can stagger requests or lazy load data for better performance. When serving from our database instead of live provider calls, we can add indexing to speed up lookups for a given property.
 
-Cron jobs to query providers over time: We can schedule periodic jobs to refresh data from providers so most requests can be served from the database.
+**Cron jobs to query providers over time:** We can schedule periodic jobs to refresh data from providers so most requests can be served from the database.
 
-Create embeddings: We can create embeddings for user search terms and server responses and store them in a vector database. When a user submits a similar query, we can retrieve close matches by embedding, enabling natural-language search (e.g., “two bedroom apartment in Hell’s Kitchen, NY”) in addition to exact address lookups.
+**Create embeddings:** We can create embeddings for user search terms and server responses and store them in a vector database. When a user submits a similar query, we can retrieve close matches by embedding, enabling natural-language search (e.g., “two bedroom apartment in Hell’s Kitchen, NY”) in addition to exact address lookups.
